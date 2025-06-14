@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vpn/presentation/main_screen/main_screen.dart';
-import 'package:vpn/presentation/sign/sign_up_screen.dart';
+import 'package:vpn/presentation/pre_login/pre_login_screen.dart';
 
 class SignUpAnimatedTransitionScreen extends StatefulWidget {
   const SignUpAnimatedTransitionScreen({super.key});
@@ -60,7 +60,7 @@ class _SignUpAnimatedTransitionScreenState
             AnimatedOpacity(
               opacity: _hideText ? 0.0 : 1.0,
               duration: Duration(microseconds: 900),
-              child: SignUpScreen(),
+              child: PreLogin(),
             ),
 
           // Верхняя панель

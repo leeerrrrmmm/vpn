@@ -4,7 +4,7 @@ import 'package:vpn/components/build_button.dart';
 import 'package:vpn/components/build_img.dart';
 import 'package:vpn/components/build_text.dart';
 import 'package:vpn/const/const_img.dart';
-import 'package:vpn/presentation/sign/sign_up_screen.dart';
+import 'package:vpn/presentation/pre_login/pre_login_screen.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -98,7 +98,7 @@ class _OnboardingState extends State<Onboarding> {
                             Navigator.pushReplacement(
                               context,
                               CupertinoPageRoute(
-                                builder: (context) => SignUpScreen(),
+                                builder: (context) => PreLogin(),
                               ),
                             );
                           },

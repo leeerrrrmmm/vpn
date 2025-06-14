@@ -5,8 +5,8 @@ import 'package:vpn/components/build_img.dart';
 import 'package:vpn/components/build_text.dart';
 import 'package:vpn/presentation/anim.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class PreLogin extends StatelessWidget {
+  const PreLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
                   children: [
                     BuildButton(
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           PageRouteBuilder(
                             pageBuilder:
