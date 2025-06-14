@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:vpn/components/build_button.dart';
 import 'package:vpn/components/build_img.dart';
 import 'package:vpn/components/build_text.dart';
+import 'package:vpn/presentation/forgot/forgot_screen.dart';
 import 'package:vpn/presentation/sign_up_screen/sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -89,6 +90,25 @@ class _SignInScreenState extends State<SignInScreen> {
                         icon: Icons.lock,
                         autofillHint: AutofillHints.password,
                         textInputAction: TextInputAction.done,
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap:
+                                () => Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) => ForgotScreen(),
+                                  ),
+                                ),
+                            child: BuildText(
+                              text: 'Forgot password?',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 32),
                       BuildButton(
