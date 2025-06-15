@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vpn/components/build_img.dart';
 import 'package:vpn/components/build_text.dart';
@@ -26,6 +27,8 @@ class _StretchableSliverAppBarState extends State<MainScreen> {
       "Сервер L",
     ],
   };
+
+  bool isdarkMode = false;
 
   @override
   void initState() {
@@ -64,16 +67,196 @@ class _StretchableSliverAppBarState extends State<MainScreen> {
 
     return Scaffold(
       backgroundColor: isScrolled ? Colors.grey[200] : Colors.white,
-      appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
-        title: BuildText(
-          text: 'HIDE VPN',
-          fontSize: 15,
-          fontWeight: FontWeight.w700,
+      drawer: Drawer(
+        width: double.infinity,
+        backgroundColor: const Color(0XFF0BAB7E),
+        child: Column(
+          children: [
+            SizedBox(height: 50),
+            // menu & back
+            Row(
+              children: [
+                Builder(
+                  builder: (context) {
+                    return IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).closeDrawer();
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: Colors.white,
+                      ),
+                    );
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 145.0),
+                  child: BuildText(
+                    text: 'Menu',
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    textColor: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+
+            // user info
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 43.0),
+              child: Container(
+                width: double.infinity,
+                height: 67,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    // user img
+                    CircleAvatar(radius: 25),
+                    //user name
+                    BuildText(
+                      text: 'Lerm',
+                      textColor: Color(0XFF0BAB7E),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    //user plan
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      height: 23,
+                      decoration: BoxDecoration(
+                        color: Color(0XFF0BAB7E),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Center(
+                        child: BuildText(
+                          text: 'free plan',
+                          fontSize: 14,
+                          textColor: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            ...List.generate(
+              4,
+              (index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BuildText(
+                          text:
+                              index == 0
+                                  ? 'Upgrade to premium'
+                                  : index == 1
+                                  ? 'Server List'
+                                  : index == 2
+                                  ? "Speed Test"
+                                  : 'Settings',
+                          textColor: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            //TODO
+                          },
+                          icon: Icon(
+                            Icons.navigate_next_rounded,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 82),
+            ...List.generate(
+              4,
+              (index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BuildText(
+                          text:
+                              index == 0
+                                  ? 'Privacy & Policy'
+                                  : index == 1
+                                  ? 'Terms of Service'
+                                  : index == 2
+                                  ? 'FAQ'
+                                  : 'Customer Support',
+                          textColor: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            //TODO
+                          },
+                          icon: Icon(
+                            Icons.navigate_next_rounded,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  BuildText(
+                    text: 'Dark Mode',
+                    textColor: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  CupertinoSwitch(
+                    value: isdarkMode,
+                    onChanged: (val) {
+                      setState(() {
+                        isdarkMode = val;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: BuildText(
+                  text: 'Version:2.25 HideVpn',
+                  fontSize: 16,
+                  textColor: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            const SizedBox(height: 40),
+          ],
         ),
-        backgroundColor: isScrolled ? Colors.white : Colors.transparent,
-        elevation: isScrolled ? 4.0 : 0,
       ),
+
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(
